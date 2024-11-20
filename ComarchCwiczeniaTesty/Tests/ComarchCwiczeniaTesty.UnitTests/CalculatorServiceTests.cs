@@ -35,12 +35,13 @@ namespace ComarchCwiczeniaTesty.UnitTests
         {
         }
 
-        [Test]
-        public void AddShouldReturnCorrectSumValue()
+        [TestCase(2,2,4)]
+        [TestCase(-2,-2,-4)]
+        [TestCase(0,0,0)]
+        [TestCase(-2,2,0)]
+        public void AddShouldReturnCorrectSumValue(int x, int y, int expected)
         {
             // Arrange
-            int x = 2, y = 2;
-            int expected = 4;
             int actual = 0;
 
             // Act
