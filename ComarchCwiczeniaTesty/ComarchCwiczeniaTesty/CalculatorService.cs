@@ -55,7 +55,7 @@ namespace ComarchCwiczeniaTesty
             }
         }
 
-        private static void Validate(int age, int birthDay, int birthMonth)
+        private void Validate(int age, int birthDay, int birthMonth)
         {
             if (age < 0)
             {

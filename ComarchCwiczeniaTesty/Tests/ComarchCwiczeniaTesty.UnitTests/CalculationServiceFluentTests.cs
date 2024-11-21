@@ -97,7 +97,7 @@ internal class CalculationServiceFluentTests
         Action act = () => calculatorService.CalculateBirthDay(age, birthDay, birthMonth);
 
         // Assert
-        act.Should().Throw<ArgumentOutOfRangeException>();
+        act.Should().Throw<ArgumentOutOfRangeException>().Which.Message.Should().Contain("Age cannot be negative");
     }
 
     [Test]
