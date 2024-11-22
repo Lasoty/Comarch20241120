@@ -216,5 +216,19 @@ public class SeleniumTests
         infoMsg.Text.Should().Contain(fileInfo.Name);
     }
 
+    [Test]
+    public void MultipleWindowsTest()
+    {
+        driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/windows");
+        driver.FindElement(By.LinkText("Click Here")).Click();
+
+        var windows = driver.WindowHandles;
+        driver.SwitchTo().Window(windows.Last());
+        driver.Title.Should().Contain("New Window");
+
+        driver.SwitchTo().Window(windows.First());
+        driver.Title.Should().Contain("The Internet");
+    }
+
 
 }
