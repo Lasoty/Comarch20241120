@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35506.116 d17.12
+VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComarchCwiczeniaTesty", "ComarchCwiczeniaTesty\ComarchCwiczeniaTesty.csproj", "{36FC615C-223C-4706-8B1F-9FB1A8AE3BD6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B1381CC9-1335-4DFF-8364-7D49894A1119}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComarchCwiczeniaTesty.UnitTests", "Tests\ComarchCwiczeniaTesty.UnitTests\ComarchCwiczeniaTesty.UnitTests.csproj", "{00661142-15F1-4A0F-B771-1C8EFE1ECF36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComarchCwiczeniaTesty.E2eTests", "Tests\ComarchCwiczeniaTesty.E2eTests\ComarchCwiczeniaTesty.E2eTests.csproj", "{FBCB068E-2D21-4F19-8DF0-6F54FD9D4C8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,11 +25,16 @@ Global
 		{00661142-15F1-4A0F-B771-1C8EFE1ECF36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00661142-15F1-4A0F-B771-1C8EFE1ECF36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00661142-15F1-4A0F-B771-1C8EFE1ECF36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBCB068E-2D21-4F19-8DF0-6F54FD9D4C8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBCB068E-2D21-4F19-8DF0-6F54FD9D4C8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBCB068E-2D21-4F19-8DF0-6F54FD9D4C8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBCB068E-2D21-4F19-8DF0-6F54FD9D4C8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{00661142-15F1-4A0F-B771-1C8EFE1ECF36} = {B1381CC9-1335-4DFF-8364-7D49894A1119}
+		{FBCB068E-2D21-4F19-8DF0-6F54FD9D4C8A} = {B1381CC9-1335-4DFF-8364-7D49894A1119}
 	EndGlobalSection
 EndGlobal
