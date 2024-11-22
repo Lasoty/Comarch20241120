@@ -58,13 +58,13 @@ public class SeleniumTests
 
         var usernameField = driver.FindElement(By.Id("username"));
         var passwordField = driver.FindElement(By.Id("password"));
-        
+
         usernameField.SendKeys("wrongUser");
         passwordField.SendKeys("wrongPassword");
-        
+
         var loginButton = driver.FindElement(By.CssSelector("button[type='submit']"));
         loginButton.Click();
-        
+
         var errorMessage = driver.FindElement(By.CssSelector(".flash.error"));
         Assert.That(errorMessage.Text, Does.Contain("Your username is invalid!"), "Niepoprawne dane logowania nie wywo³a³y b³êdu.");
     }
@@ -91,7 +91,77 @@ public class SeleniumTests
         selectElement.SelectByValue("1");
 
         selectElement.SelectedOption.Text.Should().Contain("Option 1");
+    }
 
+    [Test]
+    public void HandleJavaScriptAlertTest()
+    {
+        driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/javascript_alerts");
+
+        var alertButton = driver.FindElement(By.XPath("//*[@id=\"content\"]/div/ul/li[1]/button"));
+        alertButton.Click();
+
+        var alert = driver.SwitchTo().Alert();
+
+        alert.Text.Should().Contain("I am a JS Alert");
+
+        alert.Accept();
+
+        var resultMessage = driver.FindElement(By.Id("result"));
+        resultMessage.Text.Should().Contain("You successfully clicked an alert");
+    }
+
+    [Test]
+    public void HandleJavaScriptConfirmPositiveTest()
+    {
+        driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/javascript_alerts");
+
+        var confirmButton = driver.FindElement(By.XPath("//*[@id=\"content\"]/div/ul/li[2]/button"));
+        confirmButton.Click();
+        
+        var alert = driver.SwitchTo().Alert();
+        alert.Text.Should().Contain("I am a JS Confirm");
+
+        alert.Accept();
+        
+        var resultMessage = driver.FindElement(By.Id("result"));
+        resultMessage.Text.Should().Contain("You clicked: Ok");
+    }
+
+    [Test]
+    public void HandleJavaScriptConfirmNegativeTest()
+    {
+        driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/javascript_alerts");
+
+        var confirmButton = driver.FindElement(By.XPath("//*[@id=\"content\"]/div/ul/li[2]/button"));
+        confirmButton.Click();
+
+        var alert = driver.SwitchTo().Alert();
+        alert.Text.Should().Contain("I am a JS Confirm");
+
+        alert.Dismiss();
+
+        var resultMessage = driver.FindElement(By.Id("result"));
+        resultMessage.Text.Should().Contain("You clicked: Cancel");
+    }
+
+
+    [Test]
+    public void HandleJavaScriptPromptPositiveTest()
+    {
+        driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/javascript_alerts");
+
+        var confirmButton = driver.FindElement(By.XPath("//*[@id=\"content\"]/div/ul/li[3]/button"));
+        confirmButton.Click();
+
+        var alert = driver.SwitchTo().Alert();
+        alert.Text.Should().Contain("I am a JS prompt");
+
+        alert.SendKeys("Test");
+        alert.Accept();
+
+        var resultMessage = driver.FindElement(By.Id("result"));
+        resultMessage.Text.Should().Contain("You entered: Test");
     }
 
 
