@@ -2,6 +2,7 @@ using FluentAssertions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace ComarchCwiczeniaTesty.E2eTests;
 
@@ -173,8 +174,30 @@ public class SeleniumTests
 
         var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         
-        var loadedElement = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("finish")));
+        var loadedElement = wait.Until(ExpectedConditions.ElementIsVisible(By.Id("finish")));
         loadedElement.Text.Should().Contain("Hello World!");
+    }
+
+    [Test]
+    public void FileUploadTest()
+    {
+        var tt = Environment.CurrentDirectory;
+
+        driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/upload");
+        var fileInput = driver.FindElement(By.Id("file-upload"));
+
+        var filePath = @"Assets\UploadTest.txt";
+        var fileInfo = new FileInfo(filePath);
+        fileInfo.Exists.Should().BeTrue();
+
+
+        fileInput.SendKeys(fileInfo.FullName);
+
+        var submitButton = driver.FindElement(By.Id("file-submit"));
+        submitButton.Click();
+
+        var infoMsg = driver.FindElement(By.Id("uploaded-files"));
+        infoMsg.Text.Should().Contain(fileInfo.Name);
     }
 
 
