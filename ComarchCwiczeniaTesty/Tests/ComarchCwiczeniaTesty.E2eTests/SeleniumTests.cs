@@ -1,6 +1,7 @@
 using FluentAssertions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
@@ -13,8 +14,24 @@ public class SeleniumTests
     [SetUp]
     public void Setup()
     {
+        var optionsChrome = new ChromeOptions();
+        optionsChrome.AddArgument("headless");
+        optionsChrome.AddArgument("--disable-gpu");
+        optionsChrome.AddArgument("--no-sandbox");
+        optionsChrome.AddArgument("--window-size=1920,1080");
+        optionsChrome.AddArgument("--incognito");
+        optionsChrome.AddArgument("--start-maximized"); //nie dzia³a w trybie headless
+        optionsChrome.AddArgument("--ignore-certificate-errors");
+        optionsChrome.AddArgument("--disable-popup-blocking");
+        optionsChrome.AddArgument("--lang=pl-PL");
+        optionsChrome.AddArgument("--allow-insecure-localhost");
+        
+        
+        //var optionsFirefox = new FirefoxOptions();
+        //optionsFirefox.AddArgument("--headless");
+
         new WebDriverManager.DriverManager().SetUpDriver(new WebDriverManager.DriverConfigs.Impl.ChromeConfig());
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(optionsChrome);
 
         driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
     }
@@ -189,7 +206,6 @@ public class SeleniumTests
         var filePath = @"Assets\UploadTest.txt";
         var fileInfo = new FileInfo(filePath);
         fileInfo.Exists.Should().BeTrue();
-
 
         fileInput.SendKeys(fileInfo.FullName);
 
