@@ -164,5 +164,18 @@ public class SeleniumTests
         resultMessage.Text.Should().Contain("You entered: Test");
     }
 
+    [Test]
+    public void DynamicLoadingTest()
+    {
+        driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/dynamic_loading/1");
+        var startButton = driver.FindElement(By.XPath("//*[@id=\"start\"]/button"));
+        startButton.Click();
+
+        var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+        
+        var loadedElement = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("finish")));
+        loadedElement.Text.Should().Contain("Hello World!");
+    }
+
 
 }
