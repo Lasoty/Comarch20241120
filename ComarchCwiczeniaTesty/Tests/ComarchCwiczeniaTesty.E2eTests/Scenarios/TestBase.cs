@@ -11,12 +11,9 @@ public abstract class TestBase
     public virtual void Setup()
     {
         var optionsChrome = new ChromeOptions();
-        //optionsChrome.AddArgument("headless");
-        //optionsChrome.AddArgument("--disable-gpu");
-        //optionsChrome.AddArgument("--no-sandbox");
-
-        //var optionsFirefox = new FirefoxOptions();
-        //optionsFirefox.AddArgument("--headless");
+        optionsChrome.AddArgument("headless");
+        optionsChrome.AddArgument("--disable-gpu");
+        optionsChrome.AddArgument("--no-sandbox");
 
         new WebDriverManager.DriverManager().SetUpDriver(new WebDriverManager.DriverConfigs.Impl.ChromeConfig());
         driver = new ChromeDriver(optionsChrome);
